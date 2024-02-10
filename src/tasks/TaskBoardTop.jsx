@@ -1,12 +1,13 @@
 import React from "react";
-import { useTaskDispatch } from "../Contexts/TaskContext";
+import { useModalDispatch, useTaskDispatch } from "../Contexts/TaskContext";
 import SearchForm from "./SearchForm";
 
 const TaskBoardTop = () => {
   const taskDispatch = useTaskDispatch();
+  const modalDispatch = useModalDispatch();
   const handleNewTaskModal = () => {
-    taskDispatch({
-      type: "addnew",
+    modalDispatch({
+      type: "open",
     });
   };
 
