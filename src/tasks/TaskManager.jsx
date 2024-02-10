@@ -15,11 +15,15 @@ const TaskManager = () => {
             <table className="table-fixed overflow-auto xl:w-full">
               <TaskTableHeader />
               <tbody>
-                {tasks.map((task) => (
-                  <Task key={task.id} task={task}></Task>
-                ))}
+                {tasks.length > 0 &&
+                  tasks.map((task) => <Task key={task.id} task={task}></Task>)}
               </tbody>
             </table>
+            {tasks.length == 0 && (
+              <h3 className="text-center text-2xl py-6">
+                No task available right now!
+              </h3>
+            )}
           </div>
         </div>
       </div>
