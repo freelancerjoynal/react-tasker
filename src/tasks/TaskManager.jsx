@@ -1,9 +1,11 @@
 import React from "react";
+import { useTasks } from "../Contexts/TaskContext";
+import Task from "./Task";
 import TaskBoardTop from "./TaskBoardTop";
-import TaskList from "./TaskList";
 import TaskTableHeader from "./TaskTableHeader";
 
 const TaskManager = () => {
+  const tasks = useTasks();
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
@@ -13,7 +15,9 @@ const TaskManager = () => {
             <table className="table-fixed overflow-auto xl:w-full">
               <TaskTableHeader />
               <tbody>
-                <TaskList />
+                {tasks.map((task) => (
+                  <Task key={task.id} task={task}></Task>
+                ))}
               </tbody>
             </table>
           </div>
