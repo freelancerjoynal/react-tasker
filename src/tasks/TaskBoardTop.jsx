@@ -1,8 +1,19 @@
 import React from "react";
+import {
+  useModalDispatch,
+  useModalLog,
+  useTaskDispatch,
+} from "../Contexts/TaskContext";
 
 const TaskBoardTop = () => {
+  const useModal = useModalLog();
+  const modalDispatch = useModalDispatch();
+  const taskDispatch = useTaskDispatch();
+
   const handleNewTaskModal = () => {
-    console.log("Modal button clicked");
+    modalDispatch({
+      type: "open",
+    });
   };
 
   return (

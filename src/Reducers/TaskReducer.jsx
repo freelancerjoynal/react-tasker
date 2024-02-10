@@ -1,7 +1,8 @@
-export default function taskReducer(draft, action) {
+export default function taskReducer(state, action) {
   switch (action.type) {
-    case "added": {
-      console.log("added action");
+    case "addnew": {
+      console.log("Show modal please");
+      break;
     }
     default: {
       console.log("Default action");
