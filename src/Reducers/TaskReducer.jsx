@@ -19,6 +19,9 @@ export default function taskReducer(state, action) {
       const tasks = state.filter((task) => task.id !== action.id);
       return tasks;
     }
+    case "delete-all": {
+      return [];
+    }
     default: {
       console.log("Default action");
     }
