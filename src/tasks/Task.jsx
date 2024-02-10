@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useTaskDispatch } from "../Contexts/TaskContext";
+import { RandomColorGenarator } from "../Utiles/RandomColorGenarator";
 
 const Task = ({ task }) => {
   const { id, title, description, tags, priority, done } = task;
+  const taskDispatch = useTaskDispatch();
+  const randomColor = RandomColorGenarator();
   //Make tags to a array
   const tagArray = tags.split(",");
 
@@ -12,15 +16,20 @@ const Task = ({ task }) => {
     setIsDone(!isDone);
   };
 
-  // Function to generate random color
-  const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+  //Delete the item from the list
+
+  const handleDelete = () => {
+    const confirmDelete = window.confirm(
+      `Are you sure to delete "(${title})" `
+    );
+    if (confirmDelete) {
+      taskDispatch({
+        type: "delete",
+        id: id,
+      });
     }
-    return color;
   };
+
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td className="cursor-pointer" onClick={handleDone}>
@@ -68,7 +77,7 @@ const Task = ({ task }) => {
             <li key={index}>
               <span
                 className="inline-block h-5 whitespace-nowrap rounded-[45px] px-2.5 text-sm capitalize"
-                style={{ backgroundColor: getRandomColor() }}
+                style={{ backgroundColor: randomColor }}
               >
                 {tagitem}
               </span>
@@ -79,7 +88,9 @@ const Task = ({ task }) => {
       <td className="text-center">{priority}</td>
       <td>
         <div className="flex items-center justify-center space-x-3">
-          <button className="text-red-500">Delete</button>
+          <button onClick={handleDelete} className="text-red-500">
+            Delete
+          </button>
           <button className="text-blue-500">Edit</button>
         </div>
       </td>
