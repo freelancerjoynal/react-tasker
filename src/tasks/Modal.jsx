@@ -4,6 +4,7 @@ import { useModalDispatch } from "../Contexts/TaskContext";
 
 const Modal = () => {
   const modalDispatch = useModalDispatch();
+
   const handleModalClose = () => {
     modalDispatch({
       type: "close",

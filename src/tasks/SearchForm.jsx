@@ -2,7 +2,14 @@ import React from "react";
 import { useTasks } from "../Contexts/TaskContext";
 
 const SearchForm = () => {
-  const { searchTerm, setSearchTerm } = useTasks();
+  const { searchTerm, setSearchTerm } = useTasks({
+    id: crypto.randomUUID(),
+    title: "",
+    description: "",
+    tags: [],
+    priority: "",
+    isFavorite: false,
+  });
 
   const handleSearchKeyword = (e) => {
     const keyword = e.target.value;

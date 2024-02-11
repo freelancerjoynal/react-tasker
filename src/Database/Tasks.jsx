@@ -6,7 +6,7 @@ export const initialTasks = [
       "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
     tags: "a,b,c,d",
     priority: "High",
-    done: false,
+    isFavorite: false,
   },
   {
     id: crypto.randomUUID(),
@@ -15,6 +15,6 @@ export const initialTasks = [
       "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
     tags: "a,b,c,d",
     priority: "High",
-    done: false,
+    isFavorite: false,
   },
 ];
