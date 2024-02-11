@@ -11,7 +11,7 @@ const Modal = () => {
   };
   return (
     <>
-      <div className="bg-black opacity-70 h-full w-full z-10 absolute top-0 left-0"></div>
+      <div className="bg-black opacity-70 h-full w-full z-10 fixed top-0 left-0"></div>
       <form className="z-10 absolute top-10 left-1/3 mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11 ">
         <span
           onClick={handleModalClose}

@@ -6,7 +6,7 @@ import TaskBoardTop from "./TaskBoardTop";
 import TaskTableHeader from "./TaskTableHeader";
 
 const TaskManager = () => {
-  const tasks = useTasks();
+  const { filteredTask, tasks } = useTasks();
   const modalLog = useModalLog();
 
   return (
@@ -21,8 +21,8 @@ const TaskManager = () => {
               <table className="table-fixed overflow-auto xl:w-full">
                 <TaskTableHeader />
                 <tbody>
-                  {tasks.length > 0 &&
-                    tasks.map((task) => (
+                  {filteredTask.length > 0 &&
+                    filteredTask.map((task) => (
                       <Task key={task.id} task={task}></Task>
                     ))}
                 </tbody>

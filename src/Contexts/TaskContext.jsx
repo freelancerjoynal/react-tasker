@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import { initialTasks } from "../Database/Tasks";
 import modalReducer from "../Reducers/ModalReducer";
 import TaskReducer from "../Reducers/TaskReducer";
@@ -16,8 +16,20 @@ export default function TasksProvider({ children }) {
   const [tasks, dispatch] = useReducer(TaskReducer, initialTasks);
   const [modal, Modaldispatch] = useReducer(modalReducer, false);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredTask = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <TaskContext.Provider value={tasks}>
+    <TaskContext.Provider
+      value={{
+        tasks,
+        searchTerm,
+        setSearchTerm,
+        filteredTask,
+      }}
+    >
       <TaskDispatchContext.Provider value={dispatch}>
         <ModalContext.Provider value={modal}>
           <ModalDispatchContext.Provider value={Modaldispatch}>
