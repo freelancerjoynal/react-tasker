@@ -16,18 +16,24 @@ export default function TasksProvider({ children }) {
   const [tasks, dispatch] = useReducer(TaskReducer, initialTasks);
   const [modal, Modaldispatch] = useReducer(modalReducer, false);
 
+  //Search functionality
   const [searchTerm, setSearchTerm] = useState("");
   const filteredTask = tasks.filter((task) =>
     task.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  //Task edit and Update
+  const [editTask, setEditTask] = useState(null);
+
   return (
     <TaskContext.Provider
       value={{
         tasks,
-        searchTerm,
+        searchTerm, 
         setSearchTerm,
         filteredTask,
+        editTask,
+        setEditTask,
       }}
     >
       <TaskDispatchContext.Provider value={dispatch}>

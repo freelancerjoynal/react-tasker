@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { useModalDispatch, useTaskDispatch } from "../Contexts/TaskContext";
+import {
+  useModalDispatch,
+  useTaskDispatch,
+  useTasks,
+} from "../Contexts/TaskContext";
 
 const Modal = () => {
   const modalDispatch = useModalDispatch();
-
   const taskDispatch = useTaskDispatch();
+
+  const { editTask } = useTasks();
 
   const handleModalClose = () => {
     modalDispatch({
@@ -13,14 +18,16 @@ const Modal = () => {
     });
   };
 
-  const [task, setTask] = useState({
-    id: crypto.randomUUID(),
-    title: "",
-    description: "",
-    tags: "",
-    priority: "",
-    isFavorite: false,
-  });
+  const [task, setTask] = useState(
+    editTask || {
+      id: crypto.randomUUID(),
+      title: "",
+      description: "",
+      tags: "",
+      priority: "",
+      isFavorite: false,
+    }
+  );
   const handleChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;

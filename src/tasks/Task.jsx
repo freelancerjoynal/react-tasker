@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { useTaskDispatch } from "../Contexts/TaskContext";
+import {
+  useModalDispatch,
+  useTaskDispatch,
+  useTasks,
+} from "../Contexts/TaskContext";
 
 const Task = ({ task }) => {
   const { id, title, description, tags, priority, isFavorite } = task;
+  const { setEditTask } = useTasks();
+  const modalDispatch = useModalDispatch();
   const taskDispatch = useTaskDispatch();
+
+
   const randomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -33,6 +41,14 @@ const Task = ({ task }) => {
         id: id,
       });
     }
+  };
+
+  //Handle edit
+  const handleEdit = () => {
+    setEditTask(task);
+    modalDispatch({
+      type: 'open'
+    })
   };
 
   return (
@@ -96,7 +112,9 @@ const Task = ({ task }) => {
           <button onClick={handleDelete} className="text-red-500">
             Delete
           </button>
-          <button className="text-blue-500">Edit</button>
+          <button onClick={handleEdit} className="text-blue-500">
+            Edit
+          </button>
         </div>
       </td>
     </tr>
