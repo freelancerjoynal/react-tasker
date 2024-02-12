@@ -4,7 +4,11 @@ import { useModalDispatch, useTaskDispatch } from "../Contexts/TaskContext";
 
 const Modal = () => {
   const modalDispatch = useModalDispatch();
+<<<<<<< HEAD
   const taskDispatch = useTaskDispatch();
+=======
+
+>>>>>>> baf63d60d16c217f092800d29e06131459a19393
   const handleModalClose = () => {
     modalDispatch({
       type: "close",

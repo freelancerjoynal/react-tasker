@@ -27,7 +27,7 @@ const TaskManager = () => {
                     ))}
                 </tbody>
               </table>
-              {tasks.length == 0 && (
+              {filteredTask.length == 0 && (
                 <h3 className="text-center text-2xl py-6">
                   No task available right now!
                 </h3>

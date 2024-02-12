@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTaskDispatch } from "../Contexts/TaskContext";
 
 const Task = ({ task }) => {
-  const { id, title, description, tags, priority, done } = task;
+  const { id, title, description, tags, priority, isFavorite } = task;
   const taskDispatch = useTaskDispatch();
   const randomColor = () => {
     const letters = "0123456789ABCDEF";
@@ -16,9 +16,9 @@ const Task = ({ task }) => {
 
   //Handle the complete icon
 
-  const [isDone, setIsDone] = useState(done);
+  const [isFav, setIsFav] = useState(isFavorite);
   const handleDone = () => {
-    setIsDone(!isDone);
+    setIsFav(!isFav);
   };
 
   //Delete the item from the list
@@ -38,7 +38,7 @@ const Task = ({ task }) => {
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td className="cursor-pointer" onClick={handleDone}>
-        {isDone ? (
+        {isFav ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-star"
