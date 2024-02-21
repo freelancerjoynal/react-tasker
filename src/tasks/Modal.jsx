@@ -38,36 +38,37 @@ const Modal = () => {
       [name]: value,
     });
   };
-  const [erros, setErrrs] = useState({
+  const [errors, setErrors] = useState({
     title: "",
     description: "",
     tags: "",
+    priority: "",
   });
 
   const handleSave = (e) => {
     e.preventDefault();
 
-    if (task.title == "") {
-      setErrrs({
-        ...erros,
+    if (task.title === "") {
+      setErrors({
+        ...errors,
         title: "Please type a title",
       });
       return false;
-    } else if (task.description == "") {
-      setErrrs({
-        ...erros,
+    } else if (task.description === "") {
+      setErrors({
+        ...errors,
         description: "Description is required",
       });
       return false;
-    } else if (task.tags == "") {
-      setErrrs({
-        ...erros,
+    } else if (task.tags === "") {
+      setErrors({
+        ...errors,
         tags: "You must put minimum 1 tag",
       });
       return false;
-    } else if (task.priority == "") {
-      setErrrs({
-        ...erros,
+    } else if (task.priority === "") {
+      setErrors({
+        ...errors,
         priority: "Please select one",
       });
       return false;
@@ -75,6 +76,16 @@ const Modal = () => {
 
     taskDispatch({
       type: "addnew",
+      task,
+    });
+    modalDispatch({
+      type: "close",
+    });
+  };
+
+  const handleUpdate = () => {
+    taskDispatch({
+      type: "update",
       task,
     });
     modalDispatch({
@@ -113,7 +124,7 @@ const Modal = () => {
               id="title"
               required
             />
-            {erros.title && <p className="text-red-500">{erros.title}</p>}
+            {errors.title && <p className="text-red-500">{errors.title}</p>}
           </div>
 
           <div className="space-y-2 lg:space-y-3">
@@ -127,10 +138,9 @@ const Modal = () => {
               required
               data-gramm="false"
               wt-ignore-input="true"
-              required
             />
-            {erros.description && (
-              <p className="text-red-500">{erros.description}</p>
+            {errors.description && (
+              <p className="text-red-500">{errors.description}</p>
             )}
           </div>
 
@@ -147,7 +157,7 @@ const Modal = () => {
                 placeholder="Separate by comma"
                 required
               />
-              {erros.tags && <p className="text-red-500">{erros.tags}</p>}
+              {errors.tags && <p className="text-red-500">{errors.tags}</p>}
             </div>
 
             <div className="space-y-2 lg:space-y-3">
@@ -165,21 +175,31 @@ const Modal = () => {
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
               </select>
-              {erros.priority && (
-                <p className="text-red-500">{erros.priority}</p>
+              {errors.priority && (
+                <p className="text-red-500">{errors.priority}</p>
               )}
             </div>
           </div>
         </div>
 
         <div className="mt-16 flex justify-center lg:mt-20">
-          <button
-            onClick={handleSave}
-            type="submit"
-            className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
-          >
-            {editTask ? "Update Task " : "Create new Task"}
-          </button>
+          {editTask ? (
+            <button
+              type="button"
+              onClick={handleUpdate}
+              className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
+            >
+              Update task
+            </button>
+          ) : (
+            <button
+              onClick={handleSave}
+              type="submit"
+              className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
+            >
+              Add new task
+            </button>
+          )}
         </div>
       </form>
     </>

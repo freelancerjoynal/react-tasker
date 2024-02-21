@@ -1,20 +1,18 @@
 export const initialTasks = [
   {
     id: crypto.randomUUID(),
-    title: "Integration API",
-    description:
-      "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
+    title: "Learn Reactjs",
+    description: "I want to learn react.js within 3 months.",
     tags: "a,b,c,d",
-    priority: "High",
+    priority: "medium",
     isFavorite: false,
   },
   {
     id: crypto.randomUUID(),
-    title: "Integration API 3",
-    description:
-      "Connect an existing API to a third-party database using secure methods and handle data exchange efficiently.",
+    title: "Learn Nextjs",
+    description: "I want to learn nextjs in 6 months.",
     tags: "a,b,c,d",
-    priority: "High",
+    priority: "high",
     isFavorite: false,
   },
 ];
