@@ -88,6 +88,7 @@ const Modal = () => {
       type: "update",
       task,
     });
+    setEditTask(null);
     modalDispatch({
       type: "close",
     });
