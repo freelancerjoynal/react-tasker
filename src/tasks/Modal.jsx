@@ -11,12 +11,7 @@ const Modal = () => {
   const taskDispatch = useTaskDispatch();
 
   const { editTask } = useTasks();
-
-  const handleModalClose = () => {
-    modalDispatch({
-      type: "close",
-    });
-  };
+  const { setEditTask } = useTasks();
 
   const [task, setTask] = useState(
     editTask || {
@@ -28,6 +23,12 @@ const Modal = () => {
       isFavorite: false,
     }
   );
+  const handleModalClose = () => {
+    setEditTask(null);
+    modalDispatch({
+      type: "close",
+    });
+  };
   const handleChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -177,7 +178,7 @@ const Modal = () => {
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
           >
-            Create new Task
+            {editTask ? "Update Task " : "Create new Task"}
           </button>
         </div>
       </form>

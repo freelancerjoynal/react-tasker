@@ -30,7 +30,7 @@ const TaskBoardTop = () => {
           className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold"
         >
           Add Task
-        </button>
+        </button> 
         <button
           onClick={handleDeleteAll}
           className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold"
